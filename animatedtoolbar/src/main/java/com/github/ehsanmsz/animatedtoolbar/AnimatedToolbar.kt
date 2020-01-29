@@ -31,6 +31,7 @@ import android.view.animation.BaseInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.annotation.Px
 import androidx.appcompat.widget.Toolbar
+import androidx.core.animation.addListener
 import com.github.ehsanmsz.animatedtoolbar.color.GradientColor
 import com.github.ehsanmsz.animatedtoolbar.shape.Rect
 import com.github.ehsanmsz.animatedtoolbar.shape.Shape
@@ -59,6 +60,13 @@ class AnimatedToolbar : Toolbar {
     private var displayMetrics: DisplayMetrics? = null
     private var path = Path()
     private var isApi21 = false
+
+    var toolbarAnimationListener: ToolbarAnimationListener? = null
+
+    interface ToolbarAnimationListener {
+        fun onAnimationStart()
+        fun onAnimationEnd()
+    }
 
     constructor(context: Context?) : super(context) {
         init(context)
@@ -121,7 +129,6 @@ class AnimatedToolbar : Toolbar {
             this.duration = this@AnimatedToolbar.duration
             this.interpolator = this@AnimatedToolbar.interpolator as BaseInterpolator
             addUpdateListener {
-
                 path = shape.getPath(
                     it.getAnimatedValue(WIDTH_PROPERTY_NAME) as Float,
                     it.getAnimatedValue(HEIGHT_PROPERTY_NAME) as Float
@@ -132,6 +139,10 @@ class AnimatedToolbar : Toolbar {
                 }
                 invalidate()
             }
+            addListener(
+                onStart = { toolbarAnimationListener?.onAnimationStart() },
+                onEnd = { toolbarAnimationListener?.onAnimationEnd() }
+            )
         }
         objectAnimator.start()
     }
@@ -141,7 +152,6 @@ class AnimatedToolbar : Toolbar {
             context.theme.resolveAttribute(android.R.attr.actionBarSize, this, true)
             return TypedValue.complexToDimensionPixelSize(this.data, displayMetrics)
         }
-
     }
 
     private fun setGradientColor() {

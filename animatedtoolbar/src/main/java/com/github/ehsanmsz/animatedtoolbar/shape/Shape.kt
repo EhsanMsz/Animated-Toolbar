@@ -32,6 +32,7 @@ abstract class Shape {
             if (value < 0f) field = 0f
             field = value
         }
+
     @Px
     var toX = 1f
         set(value) {
@@ -39,6 +40,7 @@ abstract class Shape {
             if (value < 0f) field = 0f
             field = value
         }
+
     @Px
     var fromY = 0f
         set(value) {
@@ -46,6 +48,7 @@ abstract class Shape {
             if (value < 0f) field = 0f
             field = value
         }
+
     @Px
     var toY = 1f
         set(value) {

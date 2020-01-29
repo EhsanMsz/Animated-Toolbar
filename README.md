@@ -19,7 +19,7 @@ allprojects {
   
 ```groovy
 dependencies {
-    implementation 'com.github.EhsanMsz:Animated-Toolbar:v0.1.0'
+    implementation 'com.github.EhsanMsz:Animated-Toolbar:0.7.0'
 }
 ```
   
