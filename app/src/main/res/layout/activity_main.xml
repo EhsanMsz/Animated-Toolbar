@@ -13,6 +13,9 @@
         app:contentInsetStartWithNavigation="0dp"
         android:gravity="top"
         android:elevation="8dp"
+        app:duration="400"
+        app:shape="rect"
+        app:angle="30"
         android:layout_alignParentTop="true">
 
         <TextView
