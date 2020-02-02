@@ -1,9 +1,7 @@
 package com.github.ehsanmsz.animatedtoolbarsample
 
 import android.os.Bundle
-import android.view.View
 import android.view.animation.DecelerateInterpolator
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.github.ehsanmsz.animatedtoolbar.AnimatedToolbar
@@ -39,9 +37,9 @@ class MainActivity : AppCompatActivity() {
 
         animatedToolbar.apply {
             duration = 400L
-            interpolator = DecelerateInterpolator()
+            //interpolator = DecelerateInterpolator()
             //shape = roundedRect
-            shape = rect
+            //shape = rect
             gradientColor = color
             toolbarAnimationListener = object : AnimatedToolbar.ToolbarAnimationListener {
                 override fun onAnimationStart() {

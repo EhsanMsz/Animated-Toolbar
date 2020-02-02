@@ -18,10 +18,9 @@ package com.github.ehsanmsz.animatedtoolbar.shape
 import android.graphics.Path
 import kotlin.math.sin
 
-class Rect : Shape() {
+class Rect(angle: Double = 30.0, var gravity: Int = GRAVITY_LEFT) : Shape() {
 
-    var gravity = GRAVITY_LEFT
-    var angle: Double = 30.0
+    var angle: Double = angle
         set(value) {
             if (value > 90.0) field = 90.0
             if (value < 0.0) field = 0.0
