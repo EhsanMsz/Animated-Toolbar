@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AnimatedToolbar">
+        <attr name="animatedToolbarStyle" format="reference" />
+        <attr name="duration" format="integer" />
+        <attr name="angle" format="float" />
+        <attr name="shape">
+            <enum name="rect" value="0" />
+            <enum name="roundedRect" value="1" />
+        </attr>
+        <attr name="shapeGravity">
+            <enum name="left" value="0"/>
+            <enum name="right" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>

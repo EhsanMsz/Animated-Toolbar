@@ -48,7 +48,6 @@ class AnimatedToolbar : Toolbar {
     private var mWidth = 0
     private var mHeight = 0
     private var mColor: Int = 0
-    private var selectedChildViewId: Int? = 0
 
     @Px
     var toolbarHeight: Int = 0
