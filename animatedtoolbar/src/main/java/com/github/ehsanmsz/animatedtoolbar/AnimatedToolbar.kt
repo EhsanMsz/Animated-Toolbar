@@ -69,15 +69,15 @@ class AnimatedToolbar : Toolbar {
         fun onAnimationEnd()
     }
 
-    constructor(context: Context?) : this(context, null)
+    constructor(context: Context) : this(context, null)
 
-    constructor(context: Context?, attrs: AttributeSet?) : this(
+    constructor(context: Context, attrs: AttributeSet?) : this(
         context,
         attrs,
         R.attr.animatedToolbarStyle
     )
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr
