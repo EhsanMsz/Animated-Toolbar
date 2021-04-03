@@ -1,4 +1,4 @@
-package com.github.ehsanmsz.animatedtoolbar
+package com.ehsanmsz.animatedtoolbarsample
 
 import org.junit.Test
 

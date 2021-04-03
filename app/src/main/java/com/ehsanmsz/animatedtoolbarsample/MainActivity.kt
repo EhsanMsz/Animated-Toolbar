@@ -1,14 +1,14 @@
-package com.github.ehsanmsz.animatedtoolbarsample
+package com.ehsanmsz.animatedtoolbarsample
 
 import android.os.Bundle
 import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.github.ehsanmsz.animatedtoolbar.AnimatedToolbar
-import com.github.ehsanmsz.animatedtoolbar.color.GradientColor
-import com.github.ehsanmsz.animatedtoolbar.shape.Rect
-import com.github.ehsanmsz.animatedtoolbar.shape.RoundedRect
-import com.github.ehsanmsz.animatedtoolbar.shape.Shape
+import com.ehsanmsz.animatedtoolbar.AnimatedToolbar
+import com.ehsanmsz.animatedtoolbar.color.GradientColor
+import com.ehsanmsz.animatedtoolbar.shape.Rect
+import com.ehsanmsz.animatedtoolbar.shape.RoundedRect
+import com.ehsanmsz.animatedtoolbar.shape.Shape
 
 class MainActivity : AppCompatActivity() {
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.ehsanmsz.animatedtoolbar
+package com.ehsanmsz.animatedtoolbar
 
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
@@ -32,10 +32,10 @@ import android.view.animation.DecelerateInterpolator
 import androidx.annotation.Px
 import androidx.appcompat.widget.Toolbar
 import androidx.core.animation.addListener
-import com.github.ehsanmsz.animatedtoolbar.color.GradientColor
-import com.github.ehsanmsz.animatedtoolbar.shape.Rect
-import com.github.ehsanmsz.animatedtoolbar.shape.RoundedRect
-import com.github.ehsanmsz.animatedtoolbar.shape.Shape
+import com.ehsanmsz.animatedtoolbar.color.GradientColor
+import com.ehsanmsz.animatedtoolbar.shape.Rect
+import com.ehsanmsz.animatedtoolbar.shape.RoundedRect
+import com.ehsanmsz.animatedtoolbar.shape.Shape
 import kotlin.math.max
 
 class AnimatedToolbar : Toolbar {

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.ehsanmsz.animatedtoolbar.color
+package com.ehsanmsz.animatedtoolbar.color
 
 import android.graphics.LinearGradient
 import android.graphics.Shader

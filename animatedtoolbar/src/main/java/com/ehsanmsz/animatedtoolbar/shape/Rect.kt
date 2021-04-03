@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.ehsanmsz.animatedtoolbar.shape
+package com.ehsanmsz.animatedtoolbar.shape
 
 import android.graphics.Path
 import kotlin.math.sin

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.ehsanmsz.animatedtoolbar
+package com.ehsanmsz.animatedtoolbar
 
 import android.graphics.Outline
 import android.graphics.Path

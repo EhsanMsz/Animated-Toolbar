@@ -1,4 +1,4 @@
-package com.github.ehsanmsz.animatedtoolbar
+package com.ehsanmsz.animatedtoolbar
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.github.ehsanmsz.animatedtoolbar.test", appContext.packageName)
+        assertEquals("com.ehsanmsz.animatedtoolbar.test", appContext.packageName)
     }
 }
