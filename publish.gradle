@@ -1,0 +1,79 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+task sourceJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+    from android.sourceSets.main.kotlin.srcDirs
+}
+
+artifacts {
+    archives sourceJar
+}
+
+group = PUBLISH_GROUP_ID
+version = PUBLISH_VERSION
+
+def ossrhUsername = ''
+def ossrhPassword = ''
+
+def publishPropertiesFile = rootProject.file("publish.properties")
+if (publishPropertiesFile.exists()) {
+    def publishProperties = new Properties()
+    publishProperties.load(new FileInputStream(publishPropertiesFile))
+
+    ossrhUsername = publishProperties['ossrhUsername']
+    ossrhPassword = publishProperties['ossrhPassword']
+
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = PUBLISH_GROUP_ID
+                artifactId = PUBLISH_ARTIFACT_ID
+                version = PUBLISH_VERSION
+
+                pom {
+                    name = "Animated-Toolbar"
+                    description = "Simple toolbar animation for Android"
+                    url = "https://github.com/EhsanMsz/Animated-Toolbar"
+                    licenses {
+                        license {
+                            name = "The Apache License, Version 2.0"
+                            url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        }
+                    }
+                    developers {
+                        developer {
+                            name = "Ehsan Msz"
+                            email = "ehsan@ehsanmsz.com"
+                        }
+                    }
+                    scm {
+                        connection = "scm:git:github.com/EhsanMsz/Animated-Toolbar.git"
+                        url = "https://github.com/EhsanMsz/Animated-Toolbar"
+                        developerConnection = 'scm:git:ssh://git@github.com:EhsanMsz/Animated-Toolbar.git'
+                    }
+                }
+                artifact sourceJar
+            }
+        }
+
+        repositories {
+            maven {
+                url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                credentials {
+                    username ossrhUsername
+                    password ossrhPassword
+                }
+            }
+        }
+    }
+
+    signing {
+        sign publishing.publications
+    }
+}
