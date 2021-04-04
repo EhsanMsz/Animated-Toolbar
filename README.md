@@ -1,34 +1,35 @@
 # Animated Toolbar
-[![](https://jitpack.io/v/EhsanMsz/Animated-Toolbar.svg)](https://jitpack.io/#EhsanMsz/Animated-Toolbar)
+[![](https://img.shields.io/maven-central/v/com.ehsanmsz/animated-toolbar?color=blue)](https://search.maven.org/artifact/com.ehsanmsz/animated-toolbar/0.7.1/aar)
+[![](https://img.shields.io/github/license/ehsanmsz/animated-toolbar?color=blue)](https://github.com/EhsanMsz/Animated-Toolbar/blob/master/LICENSE.txt)
+[![](https://img.shields.io/github/issues/ehsanmsz/animated-toolbar?color=blue)](https://github.com/EhsanMsz/Animated-Toolbar/issues)
+
 
 Simple toolbar animation for Android
 
-## Usage 
+# Download
 
-add in build.gradle(project):
-
-```groovy
-allprojects {
-    repositories {
-       maven { url 'https://jitpack.io' }
-    }
-}
-```
-  
-  in build.gradle(app):
-  
+Gradle:
 ```groovy
 dependencies {
-    implementation 'com.github.EhsanMsz:Animated-Toolbar:0.7.0'
+    implementation 'com.ehsanmsz:animated-toolbar:0.7.1'
 }
 ```
+
+Maven:
+```xml
+<dependency>
+  <groupId>com.ehsanmsz</groupId>
+  <artifactId>animated-toolbar</artifactId>
+  <version>0.7.1</version>
+  <type>aar</type>
+</dependency>
+```
   
-  
-## Example
-add toolbar in xml layout:
+# Example
+XML:
 
 ```xml
-<com.github.ehsanmsz.animatedtoolbar.AnimatedToolbar
+<com.ehsanmsz.animatedtoolbar.AnimatedToolbar
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -43,7 +44,7 @@ add toolbar in xml layout:
             android:text="@string/app_name"
             android:gravity="center"/>
 
-</com.github.ehsanmsz.animatedtoolbar.AnimatedToolbar>
+</com.ehsanmsz.animatedtoolbar.AnimatedToolbar>
  ```
 
 ### Java:
@@ -85,7 +86,7 @@ setSupportActionBar(animatedToolbar)
 ```
 
   
-## License
+# License
 ```
 Copyright 2020 Ehsan msz
 
