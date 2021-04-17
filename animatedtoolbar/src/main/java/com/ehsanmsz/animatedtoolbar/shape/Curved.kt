@@ -21,7 +21,7 @@ import androidx.annotation.Px
 
 class Curved : Shape {
 
-    var gravity: Int = GRAVITY_LEFT
+    var gravity: ShapeGravity = ShapeGravity.LEFT
         private set
 
     @Px
@@ -32,24 +32,25 @@ class Curved : Shape {
 
     private val rect = RectF()
 
-    constructor(gravity: Int = GRAVITY_LEFT) {
+    constructor(gravity: ShapeGravity = ShapeGravity.LEFT) {
         this.gravity = gravity
     }
 
-    constructor(@Px radius: Float, gravity: Int = GRAVITY_LEFT) {
+    constructor(@Px radius: Float, gravity: ShapeGravity = ShapeGravity.LEFT) {
         this.gravity = gravity
         this.radius = radius
     }
 
     override fun getPath(width: Float, height: Float): Path {
+        if (radius < 0) radius = 0f
         return Path().apply {
             moveTo(0f, 0f)
-            if (gravity == GRAVITY_LEFT) {
+            if (gravity == ShapeGravity.LEFT) {
                 lineTo(width, 0f)
                 rect.set(width - radius, height - radius, width, height)
                 arcTo(rect, 0f, 90f, false)
                 lineTo(0f, height)
-            } else if (gravity == GRAVITY_RIGHT) {
+            } else if (gravity == ShapeGravity.RIGHT) {
                 lineTo(width, 0f)
                 lineTo(width, height)
                 lineTo(radius, height)

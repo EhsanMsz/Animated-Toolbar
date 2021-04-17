@@ -20,11 +20,6 @@ import androidx.annotation.Px
 
 abstract class Shape {
 
-    companion object {
-        const val GRAVITY_LEFT = 0
-        const val GRAVITY_RIGHT = 1
-    }
-
     @Px
     var fromX = 1f
         set(value) {

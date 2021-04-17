@@ -18,7 +18,7 @@ package com.ehsanmsz.animatedtoolbar.shape
 import android.graphics.Path
 import kotlin.math.sin
 
-class Ramp(angle: Double = 30.0, var gravity: Int = GRAVITY_LEFT) : Shape() {
+class Ramp(angle: Double = 30.0, var gravity: ShapeGravity = ShapeGravity.LEFT) : Shape() {
 
     var angle: Double = angle
         private set(value) {
@@ -33,10 +33,10 @@ class Ramp(angle: Double = 30.0, var gravity: Int = GRAVITY_LEFT) : Shape() {
         return Path().apply {
             moveTo(0f, 0f)
             lineTo(width, 0f)
-            if (gravity == GRAVITY_LEFT) {
+            if (gravity == ShapeGravity.LEFT) {
                 lineTo(width, getHeight(height))
                 lineTo(0f, height)
-            } else if (gravity == GRAVITY_RIGHT) {
+            } else if (gravity == ShapeGravity.RIGHT) {
                 lineTo(width, height)
                 lineTo(0f, getHeight(height))
             }
