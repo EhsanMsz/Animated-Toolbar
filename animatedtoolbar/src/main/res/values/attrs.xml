@@ -1,18 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="AnimatedToolbar">
+        <!--AnimatedToolbar style-->
         <attr name="animatedToolbarStyle" format="reference" />
+
+        <!--toolbar animation duration in milliseconds-->
         <attr name="duration" format="integer" />
-        <attr name="angle" format="float" />
+
+        <!--toolbar shape-->
         <attr name="shape">
             <enum name="ramp" value="0" />
             <enum name="rounded" value="1" />
             <enum name="curved" value="2" />
         </attr>
+
+        <!--toolbar shape gravity-->
         <attr name="shapeGravity">
             <enum name="left" value="0" />
             <enum name="right" value="1" />
         </attr>
+
+        <!--enable/disable the toolbar animation-->
         <attr name="animationEnabled" format="boolean" />
+
+        <!--gradient color attributes-->
+        <!--toolbar start color-->
+        <attr name="toolbarStartColor" format="reference|color" />
+        <!--toolbar end color-->
+        <attr name="toolbarEndColor" format="reference|color" />
+        <!--toolbar gradient color angle-->
+        <attr name="toolbarColorAngle" format="float" />
+
+
+        <!--ramp angle-->
+        <attr name="rampAngle" format="float" />
+
+        <!--rounded corner radius-->
+        <attr name="roundedRadius" format="float" />
+
+        <!--curved corner radius-->
+        <attr name="curvedRadius" format="float" />
+
     </declare-styleable>
 </resources>

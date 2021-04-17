@@ -3,7 +3,7 @@
 
     <style name="AnimatedToolbar">
         <item name="shape">ramp</item>
-        <item name="angle">30.0</item>
+        <item name="rampAngle">30.0</item>
         <item name="shapeGravity">left</item>
         <item name="animationEnabled">true</item>
     </style>

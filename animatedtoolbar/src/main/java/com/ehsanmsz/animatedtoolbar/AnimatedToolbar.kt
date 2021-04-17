@@ -19,6 +19,7 @@ import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -32,6 +33,7 @@ import android.view.animation.DecelerateInterpolator
 import androidx.annotation.Px
 import androidx.appcompat.widget.Toolbar
 import androidx.core.animation.addListener
+import androidx.core.content.ContextCompat
 import com.ehsanmsz.animatedtoolbar.color.GradientColor
 import com.ehsanmsz.animatedtoolbar.shape.*
 import kotlin.math.max
@@ -99,22 +101,29 @@ class AnimatedToolbar : Toolbar {
         ta?.apply {
             duration = getInteger(R.styleable.AnimatedToolbar_duration, 400).toLong()
             isAnimationEnabled = getBoolean(R.styleable.AnimatedToolbar_animationEnabled, true)
+
             val gravity = getInteger(R.styleable.AnimatedToolbar_shapeGravity, 0)
+            val roundedRadius = getFloat(R.styleable.AnimatedToolbar_roundedRadius, -1f)
+            val curvedRadius = getFloat(R.styleable.AnimatedToolbar_curvedRadius, -1f)
+
             when (getInteger(R.styleable.AnimatedToolbar_shape, 0)) {
                 0 -> {
                     shape = Ramp(
-                        getFloat(R.styleable.AnimatedToolbar_angle, 30f).toDouble(),
-                        ShapeGravity.values()[gravity]
+                        angle = getFloat(R.styleable.AnimatedToolbar_rampAngle, 30f).toDouble(),
+                        gravity = ShapeGravity.values()[gravity]
                     )
                 }
-
                 1 -> {
-                    shape = Rounded()
+                    shape = Rounded(roundedRadius)
                 }
                 2 -> {
-                    shape = Curved(ShapeGravity.values()[gravity])
+                    shape = Curved(
+                        radius = curvedRadius,
+                        gravity = ShapeGravity.values()[gravity]
+                    )
                 }
             }
+            initGradientColor(this)
             recycle()
         }
     }
@@ -134,6 +143,30 @@ class AnimatedToolbar : Toolbar {
 
     private fun checkApiVersion() {
         isApi21 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+    }
+
+    private fun initGradientColor(ta: TypedArray) {
+        val startColorId = ta.getResourceId(R.styleable.AnimatedToolbar_toolbarStartColor, 0)
+        val endColorId = ta.getResourceId(R.styleable.AnimatedToolbar_toolbarEndColor, 0)
+        val startColor = ta.getColor(R.styleable.AnimatedToolbar_toolbarStartColor, 0)
+        val endColor = ta.getColor(R.styleable.AnimatedToolbar_toolbarEndColor, 0)
+        val colorAngle = ta.getFloat(R.styleable.AnimatedToolbar_toolbarColorAngle, 90f)
+
+        val start =
+            if (startColorId != 0)
+                ContextCompat.getColor(context, startColorId)
+            else
+                startColor
+
+        val end =
+            if (endColorId != 0)
+                ContextCompat.getColor(context, endColorId)
+            else
+                endColor
+
+        if (start != 0 && end != 0) {
+            gradientColor = GradientColor(intArrayOf(start, end), colorAngle.toDouble())
+        }
     }
 
     @SuppressLint("newApi")
