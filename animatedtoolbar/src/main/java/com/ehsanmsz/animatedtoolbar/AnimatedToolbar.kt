@@ -43,6 +43,8 @@ class AnimatedToolbar : Toolbar {
     companion object {
         private const val WIDTH_PROPERTY_NAME = "width"
         private const val HEIGHT_PROPERTY_NAME = "height"
+        private const val VIEW_X_COEFFICIENT_PROPERTY_NAME = "view_width"
+        private const val VIEW_Y_COEFFICIENT_PROPERTY_NAME = "view_height"
     }
 
     private var mWidth = 0
@@ -63,6 +65,7 @@ class AnimatedToolbar : Toolbar {
     private var isApi21 = false
 
     var toolbarAnimationListener: ToolbarAnimationListener? = null
+    private var viewAnimationListener: ViewAnimationUpdateListener? = null
 
     interface ToolbarAnimationListener {
         fun onAnimationStart()
@@ -146,13 +149,25 @@ class AnimatedToolbar : Toolbar {
         )
         val heightPropertyValueHolder = PropertyValuesHolder.ofFloat(
             HEIGHT_PROPERTY_NAME,
-            shape.fromY * mHeight,
+            shape.fromY,
             shape.toY * mHeight
+        )
+        val viewXPropertyValueHolder = PropertyValuesHolder.ofFloat(
+            VIEW_X_COEFFICIENT_PROPERTY_NAME,
+            shape.fromX,
+            1f
+        )
+        val viewYPropertyValueHolder = PropertyValuesHolder.ofFloat(
+            VIEW_Y_COEFFICIENT_PROPERTY_NAME,
+            shape.fromY * mHeight,
+            1f
         )
 
         val objectAnimator = ObjectAnimator.ofPropertyValuesHolder(
             widthPropertyValueHolder,
-            heightPropertyValueHolder
+            heightPropertyValueHolder,
+            viewXPropertyValueHolder,
+            viewYPropertyValueHolder
         ).apply {
             this.duration = this@AnimatedToolbar.duration
             this.interpolator = this@AnimatedToolbar.interpolator as BaseInterpolator
@@ -161,6 +176,12 @@ class AnimatedToolbar : Toolbar {
                     it.getAnimatedValue(WIDTH_PROPERTY_NAME) as Float,
                     it.getAnimatedValue(HEIGHT_PROPERTY_NAME) as Float
                 )
+
+                viewAnimationListener?.onUpdate(
+                    it.getAnimatedValue(VIEW_X_COEFFICIENT_PROPERTY_NAME) as Float,
+                    it.getAnimatedValue(VIEW_Y_COEFFICIENT_PROPERTY_NAME) as Float
+                )
+
                 //TODO: elevation for api 17
                 if (isApi21) {
                     outlineProvider = AnimatedToolbarOutlineProvider(path)
@@ -173,6 +194,10 @@ class AnimatedToolbar : Toolbar {
             )
         }
         objectAnimator.start()
+    }
+
+    internal fun setViewAnimationListener(l: ViewAnimationUpdateListener) {
+        viewAnimationListener = l
     }
 
     private fun getDefaultActionBarSize(): Int {
