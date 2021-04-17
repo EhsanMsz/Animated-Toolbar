@@ -45,6 +45,12 @@ class AnimatedToolbar : Toolbar {
         private const val HEIGHT_PROPERTY_NAME = "height"
         private const val VIEW_X_COEFFICIENT_PROPERTY_NAME = "view_width"
         private const val VIEW_Y_COEFFICIENT_PROPERTY_NAME = "view_height"
+
+        private const val DEFAULT_ANIMATION_DURATION = 400
+        private const val DEFAULT_GRAVITY = 0 //ShapeGravity.LEFT
+        private const val DEFAULT_TOOLBAR_SHAPE = 0 //Ramp
+        private const val DEFAULT_COLOR_ANGLE = 90f
+        private const val DEFAULT_RAMP_ANGLE = 30f
     }
 
     private var mWidth = 0
@@ -99,30 +105,13 @@ class AnimatedToolbar : Toolbar {
         )
 
         ta?.apply {
-            duration = getInteger(R.styleable.AnimatedToolbar_duration, 400).toLong()
+            duration = getInteger(
+                R.styleable.AnimatedToolbar_duration,
+                DEFAULT_ANIMATION_DURATION
+            ).toLong()
+
             isAnimationEnabled = getBoolean(R.styleable.AnimatedToolbar_animationEnabled, true)
-
-            val gravity = getInteger(R.styleable.AnimatedToolbar_shapeGravity, 0)
-            val roundedRadius = getFloat(R.styleable.AnimatedToolbar_roundedRadius, -1f)
-            val curvedRadius = getFloat(R.styleable.AnimatedToolbar_curvedRadius, -1f)
-
-            when (getInteger(R.styleable.AnimatedToolbar_shape, 0)) {
-                0 -> {
-                    shape = Ramp(
-                        angle = getFloat(R.styleable.AnimatedToolbar_rampAngle, 30f).toDouble(),
-                        gravity = ShapeGravity.values()[gravity]
-                    )
-                }
-                1 -> {
-                    shape = Rounded(roundedRadius)
-                }
-                2 -> {
-                    shape = Curved(
-                        radius = curvedRadius,
-                        gravity = ShapeGravity.values()[gravity]
-                    )
-                }
-            }
+            initToolbarShape(this)
             initGradientColor(this)
             recycle()
         }
@@ -145,12 +134,43 @@ class AnimatedToolbar : Toolbar {
         isApi21 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
     }
 
+    private fun initToolbarShape(ta: TypedArray) {
+        val gravity = ta.getInteger(R.styleable.AnimatedToolbar_shapeGravity, DEFAULT_GRAVITY)
+        val roundedRadius =
+            ta.getFloat(R.styleable.AnimatedToolbar_roundedRadius, Rounded.DEFAULT_RADIUS)
+        val curvedRadius =
+            ta.getFloat(R.styleable.AnimatedToolbar_curvedRadius, Curved.DEFAULT_RADIUS)
+
+        when (ta.getInteger(R.styleable.AnimatedToolbar_shape, DEFAULT_TOOLBAR_SHAPE)) {
+            0 -> {
+                shape = Ramp(
+                    angle = ta.getFloat(
+                        R.styleable.AnimatedToolbar_rampAngle,
+                        DEFAULT_RAMP_ANGLE
+                    ).toDouble(),
+                    gravity = ShapeGravity.values()[gravity]
+                )
+            }
+            1 -> {
+                shape = Rounded(roundedRadius)
+            }
+            2 -> {
+                shape = Curved(
+                    radius = curvedRadius,
+                    gravity = ShapeGravity.values()[gravity]
+                )
+            }
+        }
+    }
+
     private fun initGradientColor(ta: TypedArray) {
         val startColorId = ta.getResourceId(R.styleable.AnimatedToolbar_toolbarStartColor, 0)
         val endColorId = ta.getResourceId(R.styleable.AnimatedToolbar_toolbarEndColor, 0)
         val startColor = ta.getColor(R.styleable.AnimatedToolbar_toolbarStartColor, 0)
         val endColor = ta.getColor(R.styleable.AnimatedToolbar_toolbarEndColor, 0)
-        val colorAngle = ta.getFloat(R.styleable.AnimatedToolbar_toolbarColorAngle, 90f)
+
+        val colorAngle =
+            ta.getFloat(R.styleable.AnimatedToolbar_toolbarColorAngle, DEFAULT_COLOR_ANGLE)
 
         val start =
             if (startColorId != 0)

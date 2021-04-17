@@ -21,11 +21,15 @@ import androidx.annotation.Px
 
 class Curved : Shape {
 
+    companion object {
+        const val DEFAULT_RADIUS = 100f
+    }
+
     var gravity: ShapeGravity = ShapeGravity.LEFT
         private set
 
     @Px
-    var radius: Float = 100f
+    var radius: Float = DEFAULT_RADIUS
         private set(value) {
             field = if (value < 0) 0f else value
         }

@@ -19,7 +19,11 @@ import android.graphics.Path
 import android.graphics.RectF
 import androidx.annotation.Px
 
-class Rounded(@Px radius: Float = 100f) : Shape() {
+class Rounded(@Px radius: Float = DEFAULT_RADIUS) : Shape() {
+
+    companion object {
+        const val DEFAULT_RADIUS = 100f
+    }
 
     @Px
     var radius: Float = radius
