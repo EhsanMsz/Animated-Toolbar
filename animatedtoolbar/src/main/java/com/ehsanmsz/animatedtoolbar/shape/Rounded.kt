@@ -16,42 +16,28 @@
 package com.ehsanmsz.animatedtoolbar.shape
 
 import android.graphics.Path
-import kotlin.math.sin
+import android.graphics.RectF
+import androidx.annotation.Px
 
-class Rect(angle: Double = 30.0, var gravity: Int = GRAVITY_LEFT) : Shape() {
+class Rounded : Shape() {
 
-    var angle: Double = angle
-        set(value) {
-            if (value > 90.0) field = 90.0
-            if (value < 0.0) field = 0.0
-            field = value
-        }
+    private var rightRect = RectF()
+    private var leftRect = RectF()
+    @Px
+    var radius = 100f
 
     override fun getPath(vararg arg: Float): Path {
         return Path().apply {
+            rightRect.set(arg[0] - radius, arg[1] - radius, arg[0], arg[1])
+            leftRect.set(0f, arg[1] - radius, radius, arg[1])
             moveTo(0f, 0f)
             lineTo(arg[0], 0f)
-            if (gravity == GRAVITY_LEFT) {
-                lineTo(arg[0], getHeight(arg[1]))
-                lineTo(0f, arg[1])
-            } else if (gravity == GRAVITY_RIGHT) {
-                lineTo(arg[0], arg[1])
-                lineTo(0f, getHeight(arg[1]))
-            }
+            lineTo(arg[0], arg[1] - radius)
+            arcTo(rightRect, 0f, 90f, false)
+            lineTo(radius, arg[1])
+            arcTo(leftRect, 90f, 90f, false)
             lineTo(0f, 0f)
             close()
         }
-    }
-
-    /**
-     * calculates height using angle
-     *
-     * @param height max height
-     * @see angle
-     *
-     * @return height
-     * */
-    private fun getHeight(height: Float): Float {
-        return height * sin(Math.toRadians(angle)).toFloat()
     }
 }

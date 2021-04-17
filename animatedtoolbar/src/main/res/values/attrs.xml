@@ -5,8 +5,8 @@
         <attr name="duration" format="integer" />
         <attr name="angle" format="float" />
         <attr name="shape">
-            <enum name="rect" value="0" />
-            <enum name="roundedRect" value="1" />
+            <enum name="ramp" value="0" />
+            <enum name="rounded" value="1" />
         </attr>
         <attr name="shapeGravity">
             <enum name="left" value="0" />

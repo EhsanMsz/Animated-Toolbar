@@ -33,8 +33,8 @@ import androidx.annotation.Px
 import androidx.appcompat.widget.Toolbar
 import androidx.core.animation.addListener
 import com.ehsanmsz.animatedtoolbar.color.GradientColor
-import com.ehsanmsz.animatedtoolbar.shape.Rect
-import com.ehsanmsz.animatedtoolbar.shape.RoundedRect
+import com.ehsanmsz.animatedtoolbar.shape.Ramp
+import com.ehsanmsz.animatedtoolbar.shape.Rounded
 import com.ehsanmsz.animatedtoolbar.shape.Shape
 import kotlin.math.max
 
@@ -103,14 +103,14 @@ class AnimatedToolbar : Toolbar {
             isAnimationEnabled = getBoolean(R.styleable.AnimatedToolbar_animationEnabled, true)
             when (getInteger(R.styleable.AnimatedToolbar_shape, 0)) {
                 0 -> {
-                    shape = Rect(
+                    shape = Ramp(
                         getFloat(R.styleable.AnimatedToolbar_angle, 30f).toDouble(),
                         getInteger(R.styleable.AnimatedToolbar_shapeGravity, 0)
                     )
                 }
 
                 1 -> {
-                    shape = RoundedRect()
+                    shape = Rounded()
                 }
             }
             recycle()
