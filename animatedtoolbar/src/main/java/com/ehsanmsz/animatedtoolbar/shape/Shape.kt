@@ -28,33 +28,41 @@ abstract class Shape {
     @Px
     var fromX = 1f
         set(value) {
-            if (value > 1f) field = 1f
-            if (value < 0f) field = 0f
-            field = value
+            field = when {
+                value > 1f -> 1f
+                value < 0f -> 0f
+                else -> value
+            }
         }
 
     @Px
     var toX = 1f
         set(value) {
-            if (value > 1f) field = 1f
-            if (value < 0f) field = 0f
-            field = value
+            field = when {
+                value > 1f -> 1f
+                value < 0f -> 0f
+                else -> value
+            }
         }
 
     @Px
     var fromY = 0f
         set(value) {
-            if (value > 1f) field = 1f
-            if (value < 0f) field = 0f
-            field = value
+            field = when {
+                value > 1f -> 1f
+                value < 0f -> 0f
+                else -> value
+            }
         }
 
     @Px
     var toY = 1f
         set(value) {
-            if (value > 1f) field = 1f
-            if (value < 0f) field = 0f
-            field = value
+            field = when {
+                value > 1f -> 1f
+                value < 0f -> 0f
+                else -> value
+            }
         }
 
     abstract fun getPath(vararg arg: Float): Path
