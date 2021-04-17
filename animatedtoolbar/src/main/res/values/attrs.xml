@@ -7,6 +7,7 @@
         <attr name="shape">
             <enum name="ramp" value="0" />
             <enum name="rounded" value="1" />
+            <enum name="curved" value="2" />
         </attr>
         <attr name="shapeGravity">
             <enum name="left" value="0" />
