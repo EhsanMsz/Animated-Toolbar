@@ -23,8 +23,7 @@ import kotlin.math.sin
 
 class GradientColor(
     private var colors: IntArray,
-    private var angle: Double = 0.0,
-    private var positions: FloatArray? = null
+    private var angle: Double = 0.0
 ) {
     @Px
     var width = 0f
@@ -36,7 +35,7 @@ class GradientColor(
 
     fun getShader(): Shader {
         setCoordinates()
-        return LinearGradient(0f, 0f, x1, y1, colors, positions, Shader.TileMode.CLAMP)
+        return LinearGradient(0f, 0f, x1, y1, colors, null, Shader.TileMode.CLAMP)
     }
 
     private fun setCoordinates() {
