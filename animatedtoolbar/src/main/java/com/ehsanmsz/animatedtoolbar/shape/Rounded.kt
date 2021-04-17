@@ -23,18 +23,19 @@ class Rounded : Shape() {
 
     private var rightRect = RectF()
     private var leftRect = RectF()
+
     @Px
     var radius = 100f
 
-    override fun getPath(vararg arg: Float): Path {
+    override fun getPath(width: Float, height: Float): Path {
         return Path().apply {
-            rightRect.set(arg[0] - radius, arg[1] - radius, arg[0], arg[1])
-            leftRect.set(0f, arg[1] - radius, radius, arg[1])
+            rightRect.set(width - radius, height - radius, width, height)
+            leftRect.set(0f, height - radius, radius, height)
             moveTo(0f, 0f)
-            lineTo(arg[0], 0f)
-            lineTo(arg[0], arg[1] - radius)
+            lineTo(width, 0f)
+            lineTo(width, height - radius)
             arcTo(rightRect, 0f, 90f, false)
-            lineTo(radius, arg[1])
+            lineTo(radius, height)
             arcTo(leftRect, 90f, 90f, false)
             lineTo(0f, 0f)
             close()

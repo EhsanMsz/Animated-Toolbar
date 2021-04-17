@@ -33,27 +33,26 @@ class Curved : Shape {
         this.radius = radius
     }
 
-
-    override fun getPath(vararg arg: Float): Path {
+    override fun getPath(width: Float, height: Float): Path {
         return Path().apply {
             moveTo(0f, 0f)
             if (gravity == GRAVITY_LEFT) {
-                lineTo(arg[0], 0f)
+                lineTo(width, 0f)
                 if (radius >= 0f)
-                    rect.set(arg[0] - radius, arg[1] - radius, arg[0], arg[1])
+                    rect.set(width - radius, height - radius, width, height)
                 else
-                    rect.set(0f, 0f, arg[0], arg[1])
+                    rect.set(0f, 0f, width, height)
 
                 arcTo(rect, 0f, 90f, false)
-                lineTo(0f, arg[1])
+                lineTo(0f, height)
             } else if (gravity == GRAVITY_RIGHT) {
-                lineTo(arg[0], 0f)
-                lineTo(arg[0], arg[1])
+                lineTo(width, 0f)
+                lineTo(width, height)
                 if (radius >= 0f) {
-                    lineTo(radius, arg[1])
-                    rect.set(0f, arg[1] - radius, radius, arg[1])
+                    lineTo(radius, height)
+                    rect.set(0f, height - radius, radius, height)
                 } else
-                    rect.set(0f, 0f, arg[0], arg[1])
+                    rect.set(0f, 0f, width, height)
                 arcTo(rect, 90f, 90f, false)
             }
             close()

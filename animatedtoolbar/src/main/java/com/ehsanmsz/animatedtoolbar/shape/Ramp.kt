@@ -22,21 +22,23 @@ class Ramp(angle: Double = 30.0, var gravity: Int = GRAVITY_LEFT) : Shape() {
 
     var angle: Double = angle
         set(value) {
-            if (value > 90.0) field = 90.0
-            if (value < 0.0) field = 0.0
-            field = value
+            field = when {
+                value > 90.0 -> 90.0
+                value < 0.0 -> 0.0
+                else -> value
+            }
         }
 
-    override fun getPath(vararg arg: Float): Path {
+    override fun getPath(width: Float, height: Float): Path {
         return Path().apply {
             moveTo(0f, 0f)
-            lineTo(arg[0], 0f)
+            lineTo(width, 0f)
             if (gravity == GRAVITY_LEFT) {
-                lineTo(arg[0], getHeight(arg[1]))
-                lineTo(0f, arg[1])
+                lineTo(width, getHeight(height))
+                lineTo(0f, height)
             } else if (gravity == GRAVITY_RIGHT) {
-                lineTo(arg[0], arg[1])
-                lineTo(0f, getHeight(arg[1]))
+                lineTo(width, height)
+                lineTo(0f, getHeight(height))
             }
             lineTo(0f, 0f)
             close()

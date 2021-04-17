@@ -65,5 +65,5 @@ abstract class Shape {
             }
         }
 
-    abstract fun getPath(vararg arg: Float): Path
+    abstract fun getPath(width: Float, height: Float): Path
 }
