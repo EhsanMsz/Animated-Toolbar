@@ -42,7 +42,6 @@ class Curved : Shape {
     }
 
     override fun getPath(width: Float, height: Float): Path {
-        if (radius < 0) radius = 0f
         return Path().apply {
             moveTo(0f, 0f)
             if (gravity == ShapeGravity.LEFT) {
