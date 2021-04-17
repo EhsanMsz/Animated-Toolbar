@@ -19,13 +19,16 @@ import android.graphics.Path
 import android.graphics.RectF
 import androidx.annotation.Px
 
-class Rounded : Shape() {
+class Rounded(@Px radius: Float = 100f) : Shape() {
+
+    @Px
+    var radius: Float = radius
+        private set(value) {
+            field = if (value < 0) 0f else value
+        }
 
     private var rightRect = RectF()
     private var leftRect = RectF()
-
-    @Px
-    var radius = 100f
 
     override fun getPath(width: Float, height: Float): Path {
         return Path().apply {

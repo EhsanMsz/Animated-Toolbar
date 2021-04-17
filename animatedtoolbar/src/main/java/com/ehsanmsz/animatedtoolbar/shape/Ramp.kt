@@ -21,7 +21,7 @@ import kotlin.math.sin
 class Ramp(angle: Double = 30.0, var gravity: Int = GRAVITY_LEFT) : Shape() {
 
     var angle: Double = angle
-        set(value) {
+        private set(value) {
             field = when {
                 value > 90.0 -> 90.0
                 value < 0.0 -> 0.0

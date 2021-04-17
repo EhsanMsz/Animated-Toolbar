@@ -17,18 +17,26 @@ package com.ehsanmsz.animatedtoolbar.shape
 
 import android.graphics.Path
 import android.graphics.RectF
+import androidx.annotation.Px
 
 class Curved : Shape {
 
-    private var gravity: Int = GRAVITY_LEFT
+    var gravity: Int = GRAVITY_LEFT
+        private set
+
+    @Px
+    var radius: Float = 100f
+        private set(value) {
+            field = if (value < 0) 0f else value
+        }
+
     private val rect = RectF()
-    private var radius: Float = -1f
 
     constructor(gravity: Int = GRAVITY_LEFT) {
         this.gravity = gravity
     }
 
-    constructor(radius: Float, gravity: Int = GRAVITY_LEFT) {
+    constructor(@Px radius: Float, gravity: Int = GRAVITY_LEFT) {
         this.gravity = gravity
         this.radius = radius
     }
@@ -38,21 +46,14 @@ class Curved : Shape {
             moveTo(0f, 0f)
             if (gravity == GRAVITY_LEFT) {
                 lineTo(width, 0f)
-                if (radius >= 0f)
-                    rect.set(width - radius, height - radius, width, height)
-                else
-                    rect.set(0f, 0f, width, height)
-
+                rect.set(width - radius, height - radius, width, height)
                 arcTo(rect, 0f, 90f, false)
                 lineTo(0f, height)
             } else if (gravity == GRAVITY_RIGHT) {
                 lineTo(width, 0f)
                 lineTo(width, height)
-                if (radius >= 0f) {
-                    lineTo(radius, height)
-                    rect.set(0f, height - radius, radius, height)
-                } else
-                    rect.set(0f, 0f, width, height)
+                lineTo(radius, height)
+                rect.set(0f, height - radius, radius, height)
                 arcTo(rect, 90f, 90f, false)
             }
             close()
