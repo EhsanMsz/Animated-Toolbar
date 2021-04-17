@@ -9,8 +9,9 @@
             <enum name="roundedRect" value="1" />
         </attr>
         <attr name="shapeGravity">
-            <enum name="left" value="0"/>
-            <enum name="right" value="1"/>
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
         </attr>
+        <attr name="animationEnabled" format="boolean" />
     </declare-styleable>
 </resources>

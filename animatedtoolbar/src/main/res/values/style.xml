@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="AnimatedToolbar">
         <item name="shape">rect</item>
         <item name="angle">30.0</item>
         <item name="shapeGravity">left</item>
+        <item name="animationEnabled">true</item>
     </style>
 </resources>

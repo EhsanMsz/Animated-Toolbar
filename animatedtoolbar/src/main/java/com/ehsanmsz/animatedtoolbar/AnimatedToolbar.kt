@@ -63,6 +63,7 @@ class AnimatedToolbar : Toolbar {
     private var displayMetrics: DisplayMetrics? = null
     private var path = Path()
     private var isApi21 = false
+    private var isAnimationEnabled = true
 
     var toolbarAnimationListener: ToolbarAnimationListener? = null
     private var viewAnimationListener: ViewAnimationUpdateListener? = null
@@ -99,6 +100,7 @@ class AnimatedToolbar : Toolbar {
 
         ta?.apply {
             duration = getInteger(R.styleable.AnimatedToolbar_duration, 400).toLong()
+            isAnimationEnabled = getBoolean(R.styleable.AnimatedToolbar_animationEnabled, true)
             when (getInteger(R.styleable.AnimatedToolbar_shape, 0)) {
                 0 -> {
                     shape = Rect(
@@ -138,6 +140,13 @@ class AnimatedToolbar : Toolbar {
         return TypedValue().apply {
             context.theme.resolveAttribute(attr, this, true)
         }.data
+    }
+
+    private fun updatePath() {
+        if (isAnimationEnabled)
+            animatePath()
+        else
+            setPath()
     }
 
     @SuppressLint("newApi")
@@ -196,6 +205,17 @@ class AnimatedToolbar : Toolbar {
         objectAnimator.start()
     }
 
+    @SuppressLint("NewApi")
+    private fun setPath() {
+        path = shape.getPath(shape.toX * mWidth, shape.toY * mHeight)
+
+        //TODO: elevation for api 17
+        if (isApi21) {
+            outlineProvider = AnimatedToolbarOutlineProvider(path)
+        }
+        invalidate()
+    }
+
     internal fun setViewAnimationListener(l: ViewAnimationUpdateListener) {
         viewAnimationListener = l
     }
@@ -240,7 +260,7 @@ class AnimatedToolbar : Toolbar {
         super.onSizeChanged(w, h, oldw, oldh)
         mWidth = w
         mHeight = h
-        animatePath()
+        updatePath()
         setGradientColor()
     }
 }
