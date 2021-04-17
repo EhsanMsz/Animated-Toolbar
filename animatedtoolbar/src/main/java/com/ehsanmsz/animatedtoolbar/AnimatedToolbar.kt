@@ -141,7 +141,7 @@ class AnimatedToolbar : Toolbar {
     }
 
     @SuppressLint("newApi")
-    private fun pathAnimation() {
+    private fun animatePath() {
         val widthPropertyValueHolder = PropertyValuesHolder.ofFloat(
             WIDTH_PROPERTY_NAME,
             shape.fromX * mWidth,
@@ -240,7 +240,7 @@ class AnimatedToolbar : Toolbar {
         super.onSizeChanged(w, h, oldw, oldh)
         mWidth = w
         mHeight = h
-        pathAnimation()
+        animatePath()
         setGradientColor()
     }
 }
