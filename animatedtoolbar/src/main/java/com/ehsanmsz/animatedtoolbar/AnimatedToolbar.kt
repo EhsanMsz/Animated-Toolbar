@@ -36,7 +36,6 @@ import androidx.core.animation.addListener
 import androidx.core.content.ContextCompat
 import com.ehsanmsz.animatedtoolbar.color.GradientColor
 import com.ehsanmsz.animatedtoolbar.shape.*
-import kotlin.math.max
 
 class AnimatedToolbar : Toolbar {
 
@@ -302,10 +301,7 @@ class AnimatedToolbar : Toolbar {
         val heightMode = MeasureSpec.getMode(heightMeasureSpec)
         val w = MeasureSpec.getSize(widthMeasureSpec)
         val h =
-            if (heightMode == MeasureSpec.EXACTLY) MeasureSpec.getSize(heightMeasureSpec) else max(
-                toolbarHeight,
-                heightMeasureSpec
-            )
+            if (heightMode == MeasureSpec.EXACTLY) MeasureSpec.getSize(heightMeasureSpec) else toolbarHeight
         super.onMeasure(
             MeasureSpec.makeMeasureSpec(w, MeasureSpec.EXACTLY),
             MeasureSpec.makeMeasureSpec(h, MeasureSpec.EXACTLY)
