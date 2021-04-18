@@ -22,16 +22,16 @@ import androidx.annotation.Px
 class Curved : Shape {
 
     companion object {
-        const val DEFAULT_RADIUS = 100f
+        const val DEFAULT_RADIUS = 100
     }
 
     var gravity: ShapeGravity = ShapeGravity.LEFT
         private set
 
     @Px
-    var radius: Float = DEFAULT_RADIUS
+    var radius: Int = DEFAULT_RADIUS
         private set(value) {
-            field = if (value < 0) 0f else value
+            field = if (value < 0) 0 else value
         }
 
     private val rect = RectF()
@@ -40,7 +40,7 @@ class Curved : Shape {
         this.gravity = gravity
     }
 
-    constructor(@Px radius: Float, gravity: ShapeGravity = ShapeGravity.LEFT) {
+    constructor(@Px radius: Int, gravity: ShapeGravity = ShapeGravity.LEFT) {
         this.gravity = gravity
         this.radius = radius
     }
@@ -56,8 +56,8 @@ class Curved : Shape {
             } else if (gravity == ShapeGravity.RIGHT) {
                 lineTo(width, 0f)
                 lineTo(width, height)
-                lineTo(radius, height)
-                rect.set(0f, height - radius, radius, height)
+                lineTo(radius.toFloat(), height)
+                rect.set(0f, height - radius, radius.toFloat(), height)
                 arcTo(rect, 90f, 90f, false)
             }
             close()
