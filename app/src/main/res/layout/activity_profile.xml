@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:at="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.profile.ProfileActivity">
+
+    <com.ehsanmsz.animatedtoolbar.AnimatedToolbarLayout
+        android:id="@+id/toolbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.ehsanmsz.animatedtoolbar.AnimatedToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:elevation="8dp"
+            android:gravity="top"
+            at:animationEnabled="true"
+            at:rampAngle="30"
+            at:shape="ramp"
+            at:shapeGravity="left"
+            at:toolbarColorAngle="90"
+            at:toolbarEndColor="@color/colorPrimary"
+            at:toolbarStartColor="@color/colorPrimaryDark"
+            tools:animationEnabled="false">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:text="@string/student"
+                android:textColor="@android:color/white" />
+
+        </com.ehsanmsz.animatedtoolbar.AnimatedToolbar>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/circle"
+            android:elevation="12dp"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_account_circle_92" />
+
+    </com.ehsanmsz.animatedtoolbar.AnimatedToolbarLayout>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarLayout"
+        tools:text="@string/student" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

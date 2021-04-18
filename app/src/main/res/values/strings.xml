@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AnimatedToolbarSample</string>
+    <string name="student">Student</string>
 </resources>
