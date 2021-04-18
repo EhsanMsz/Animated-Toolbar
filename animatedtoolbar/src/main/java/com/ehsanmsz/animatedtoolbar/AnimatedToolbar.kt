@@ -137,9 +137,15 @@ class AnimatedToolbar : Toolbar {
     private fun initToolbarShape(ta: TypedArray) {
         val gravity = ta.getInteger(R.styleable.AnimatedToolbar_shapeGravity, DEFAULT_GRAVITY)
         val roundedRadius =
-            ta.getFloat(R.styleable.AnimatedToolbar_roundedRadius, Rounded.DEFAULT_RADIUS)
+            ta.getDimensionPixelSize(
+                R.styleable.AnimatedToolbar_roundedRadius,
+                Rounded.DEFAULT_RADIUS
+            )
         val curvedRadius =
-            ta.getFloat(R.styleable.AnimatedToolbar_curvedRadius, Curved.DEFAULT_RADIUS)
+            ta.getDimensionPixelSize(
+                R.styleable.AnimatedToolbar_curvedRadius,
+                Curved.DEFAULT_RADIUS
+            )
 
         when (ta.getInteger(R.styleable.AnimatedToolbar_shape, DEFAULT_TOOLBAR_SHAPE)) {
             0 -> {

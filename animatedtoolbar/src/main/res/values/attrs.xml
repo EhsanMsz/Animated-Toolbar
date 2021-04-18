@@ -36,10 +36,10 @@
         <attr name="rampAngle" format="float" />
 
         <!--rounded corner radius-->
-        <attr name="roundedRadius" format="float" />
+        <attr name="roundedRadius" format="dimension" />
 
         <!--curved corner radius-->
-        <attr name="curvedRadius" format="float" />
+        <attr name="curvedRadius" format="dimension" />
 
     </declare-styleable>
 </resources>
