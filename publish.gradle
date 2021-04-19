@@ -49,7 +49,7 @@ afterEvaluate {
                     developers {
                         developer {
                             name = "Ehsan Msz"
-                            email = "ehsan@ehsanmsz.com"
+                            email = "e@ehsanmsz.com"
                         }
                     }
                     scm {
