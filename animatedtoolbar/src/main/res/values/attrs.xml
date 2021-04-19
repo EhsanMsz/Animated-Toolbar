@@ -23,6 +23,10 @@
         <!--enable/disable the toolbar animation-->
         <attr name="animationEnabled" format="boolean" />
 
+        <!--when shared element transition is used, the view animation in AnimatedToolbarLayout
+            will be disabled-->
+        <attr name="usingSharedElement" format="boolean" />
+
         <!--gradient color attributes-->
         <!--toolbar start color-->
         <attr name="toolbarStartColor" format="reference|color" />

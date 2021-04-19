@@ -69,6 +69,7 @@ class AnimatedToolbar : Toolbar {
     private var path = Path()
     private var isApi21 = false
     private var isAnimationEnabled = true
+    private var usingSharedElement = false
 
     var toolbarAnimationListener: ToolbarAnimationListener? = null
     private var viewAnimationListener: ViewAnimationUpdateListener? = null
@@ -110,6 +111,7 @@ class AnimatedToolbar : Toolbar {
             ).toLong()
 
             isAnimationEnabled = getBoolean(R.styleable.AnimatedToolbar_animationEnabled, true)
+            usingSharedElement = getBoolean(R.styleable.AnimatedToolbar_usingSharedElement, false)
             initToolbarShape(this)
             initGradientColor(this)
             recycle()
@@ -277,7 +279,11 @@ class AnimatedToolbar : Toolbar {
     }
 
     internal fun setViewAnimationListener(l: ViewAnimationUpdateListener) {
-        viewAnimationListener = l
+        setViewAnimationListenerIfNeeded(l)
+    }
+
+    private fun setViewAnimationListenerIfNeeded(l: ViewAnimationUpdateListener) {
+        if (!usingSharedElement) viewAnimationListener = l
     }
 
     private fun getDefaultActionBarSize(): Int {
