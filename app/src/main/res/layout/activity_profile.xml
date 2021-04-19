@@ -26,6 +26,7 @@
             at:toolbarColorAngle="90"
             at:toolbarEndColor="@color/colorPrimary"
             at:toolbarStartColor="@color/colorPrimaryDark"
+            at:usingSharedElement="true"
             tools:animationEnabled="false">
 
             <TextView
@@ -46,6 +47,7 @@
             android:background="@drawable/circle"
             android:elevation="12dp"
             android:padding="4dp"
+            android:transitionName="@string/profile_image_view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

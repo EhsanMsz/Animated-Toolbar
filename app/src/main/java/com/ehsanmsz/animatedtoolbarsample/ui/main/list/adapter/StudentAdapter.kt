@@ -2,13 +2,14 @@ package com.ehsanmsz.animatedtoolbarsample.ui.main.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.ehsanmsz.animatedtoolbarsample.R
 import com.ehsanmsz.animatedtoolbarsample.model.Student
 
 class StudentAdapter(
     private val students: List<Student>,
-    private val onClick: (student: Student) -> Unit
+    private val onClick: (student: Student, imageView: ImageView) -> Unit
 ) : RecyclerView.Adapter<StudentViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder =
