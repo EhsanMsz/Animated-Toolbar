@@ -4,14 +4,18 @@
 [![](https://img.shields.io/github/issues/ehsanmsz/animated-toolbar?color=blue)](https://github.com/EhsanMsz/Animated-Toolbar/issues)
 
 
-Simple toolbar animation for Android
+Simple toolbar animation for android
+
+<div align="center">
+    <img src="screenshot/02.gif" width="190">
+</div>
 
 # Download
 
 Gradle:
 ```groovy
 dependencies {
-    implementation 'com.ehsanmsz:animated-toolbar:0.7.1'
+    implementation 'com.ehsanmsz:animated-toolbar:0.7.2'
 }
 ```
 
@@ -26,7 +30,8 @@ Maven:
 ```
   
 # Example
-XML:
+
+Simply add `AnimatedToolbar` to layout:
 
 ```xml
 <com.ehsanmsz.animatedtoolbar.AnimatedToolbar
@@ -34,8 +39,7 @@ XML:
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="top"
-    android:elevation="8dp"
-    android:layout_alignParentTop="true">
+    android:elevation="8dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -46,46 +50,87 @@ XML:
 
 </com.ehsanmsz.animatedtoolbar.AnimatedToolbar>
  ```
-
-### Java:
-```java
-AnimatedToolbar animatedToolbar = findViewById(R.id.toolbar);
-
-Rect rect = new Rect();
-rect.setAngle(30.0);
-rect.setGravity(Shape.GRAVITY_RIGHT);
-
-GradientColor color = new GradientColor(new int[]{startColor, endColor}, 90.0, null);
-
-animatedToolbar.setDuration(400L);
-animatedToolbar.setInterpolator(new DecelerateInterpolator());
-animatedToolbar.setShape(rect);
-animatedToolbar.setGradientColor(color);
-        
-setSupportActionBar(animatedToolbar);
-```
-
-### Kotlin:
+and set `AnimatedToolbar` in `Activity`:
 ```kotlin
 val animatedToolbar = findViewById<AnimatedToolbar>(R.id.toolbar)
-        
-val rect = Rect().apply {
-    angle = 30.0
-    gravity = Shape.GRAVITY_RIGHT
-}
 
-val color = GradientColor(intArrayOf(startColor, endColor)), 90.0)
-
-animatedToolbar.apply {
-    duration = 400L
-    interpolator = DecelerateInterpolator()
-    shape = rect
-    gradientColor = color
-}
 setSupportActionBar(animatedToolbar)
 ```
+---
+## Customization:
 
-  
+### `xml` attributes:
+
+|Attribute                     |                                                                |                                               |
+|------------------------------|----------------------------------------------------------------|-----------------------------------------------|
+|app:animatedToolbarStyle      |toolbar style                                                   |                                               |
+|app:duration                  |toolbar animation duration in milliseconds                      |                                               |
+|app:animationEnabled          |enable/disable toolbar animation                                |true, false                                    |
+|app:usingSharedElement        |when shared element transition is used, the view animation in `AnimatedToolbarLayout` will be disabled|true, false|
+|app:shape                     |toolbar shape                                                   |ramp, rounded, curved                          |
+|app:shapeGravity              |toolbar shape gravity                                           |left, right                                    |
+|app:toolbarStartColor         |toolbar start color                                             |                                               |
+|app:toolbarEndColor           |toolbar end color                                               |                                               |
+|app:toolbarColorAngle         |toolbar gradient color angle                                    |                                               |
+|app:rampAngle                 |toolbar ramp shape angle                                        |                                               |
+|app:roundedRadius             |toolbar rounded shape corner radius                             |                                               |
+|app:curvedRadius              |toolbar curved shape corner radius                              |                                               |
+---
+- If you want to use `AnimatedToolbar` with **shared element**, set `app:usingSharedElement="true"`. it will disable animation for floating view.
+
+- To render output in android studio xml preview, set `tools:animationEnabled="false"`.
+---
+### Animated Toolbar with floating view:
+A view can be added to `AnimatedToolbar` and animate with it using `AnimatedToolbarLayout`.
+<div align="center">
+    <img src="screenshot/01.gif" width="190">
+</div>
+
+`AnimatedToolbarLauout` is basically a `ConstraintLayout` and can contain `AnimatedToolbar` and `View`.
+
+```xml
+<com.ehsanmsz.animatedtoolbar.AnimatedToolbarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <com.ehsanmsz.animatedtoolbar.AnimatedToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:elevation="8dp"
+        android:gravity="top"
+        app:rampAngle="30"
+        app:shape="ramp"
+        app:shapeGravity="left"
+        app:toolbarColorAngle="90"
+        app:toolbarEndColor="@color/colorPrimary"
+        app:toolbarStartColor="@color/colorPrimaryDark"
+        tools:animationEnabled="false">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:text="@string/student"
+            android:textColor="@android:color/white" />
+
+    </com.ehsanmsz.animatedtoolbar.AnimatedToolbar>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_account_circle_92" />
+
+</com.ehsanmsz.animatedtoolbar.AnimatedToolbarLayout>
+```
+
 # License
 ```
 Copyright 2020 Ehsan msz
