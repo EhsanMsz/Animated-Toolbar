@@ -24,7 +24,7 @@ Maven:
 <dependency>
   <groupId>com.ehsanmsz</groupId>
   <artifactId>animated-toolbar</artifactId>
-  <version>0.7.1</version>
+  <version>0.7.2</version>
   <type>aar</type>
 </dependency>
 ```
